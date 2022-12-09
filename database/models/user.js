@@ -38,11 +38,15 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   User.createUser = async (user) => {
-    const newUser = await User.create({...user});
-    if (!newUser) {
-      return false;
+    try{
+      const newUser = await User.create({...user});
+      if (!newUser) {
+        return false;
+      }
+      return newUser.dataValues.id;
+    } catch (e) {
+      console.log({error: e})
     }
-    return newUser.dataValues.id;
   }
 
   return User;
