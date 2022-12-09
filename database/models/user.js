@@ -4,8 +4,16 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User',{
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    username: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
     password: DataTypes.STRING,
   });
 
@@ -49,5 +57,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
+  User.sync({force: true});
   return User;
 };

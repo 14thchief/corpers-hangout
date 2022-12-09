@@ -4,7 +4,10 @@ module.exports = (sequelize, DataTypes) => {
 
   const User_detail = sequelize.define('User_detail',{
     userID: DataTypes.INTEGER,
-    phone: DataTypes.STRING,
+    phone: {
+      type: DataTypes.STRING,
+      unique: true,
+    },
     startDate: DataTypes.STRING,
     school: DataTypes.STRING,
     batch: DataTypes.STRING,
@@ -42,6 +45,6 @@ module.exports = (sequelize, DataTypes) => {
     return userDetails.userID;
   }
 
-  User_detail.sync({alter: true});
+  User_detail.sync({force: true});
   return User_detail;
 };
