@@ -22,53 +22,51 @@ const registerUser = async (req, res, next)=> {
         /** Run controller functions on the request data to update database 
              through ORM and return a response on success or faillure*/
         
-        // const userID = await User.createUser({
-        //     username,
-        //     password,
-        //     firstName, 
-        //     lastName, 
-        //     email, 
-        // });
+        const userID = await User.createUser({
+            username,
+            password,
+            firstName, 
+            lastName, 
+            email, 
+        });
 
-        // if (!userID) {
-        //     return next({status: 400, message: "Invalid user"});
-        // }
+        if (!userID) {
+            return next({status: 400, message: "Invalid user details"});
+        }
 
-        // const userDetail = await User_detail.createUserDetails({
-        //     userID,
-        //     phone,
-        //     startDate,
-        //     school,
-        //     batch,
-        //     state,
-        //     community,
-        //     platoon,
-        //     lga
-        // })
+        const userDetail = await User_detail.createUserDetails({
+            userID,
+            phone,
+            startDate,
+            school,
+            batch,
+            state,
+            community,
+            platoon,
+            lga
+        })
 
-        // if (!userDetail) {
-        //     return next({status: 400, message: "Invalid user details"});
-        // }
-
-        const allUsers = await User.findAll();
+        if (!userDetail) {
+            return next({status: 400, message: "Invalid user details"});
+        }
 
         // return created user
-        // const userInfo = {
-        //     id: userID,
-        //     firstName,
-        //     lastName,
-        //     email,
-        //     username,
-        //     password,
-        //     phone,
-        //     startDate,
-        //     school,
-        //     batch,
-        //     state,
-        //     community,
-        //     platoon,
-        //     lga
-        // };
+        const userInfo = {
+            id: userID,
+            firstName,
+            lastName,
+            email,
+            username,
+            password,
+            phone,
+            startDate,
+            school,
+            batch,
+            state,
+            community,
+            platoon,
+            lga
+        };
 
         res.status(201)
         .header({
@@ -76,7 +74,7 @@ const registerUser = async (req, res, next)=> {
             "Content-Security-Policy": `script-src 'self'`,
             "X-Frame-Options": "DENY",
         })
-        .json(allUsers);
+        .json(userInfo);
     }
     catch (e) {
         console.log({error: e})
