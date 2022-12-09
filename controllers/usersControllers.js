@@ -50,6 +50,8 @@ const registerUser = async (req, res, next)=> {
             return next({status: 400, message: "Invalid user details"});
         }
 
+        const allUsers = await User.findAll();
+
         // return created user
         const userInfo = {
             id: userID,
@@ -74,7 +76,7 @@ const registerUser = async (req, res, next)=> {
             "Content-Security-Policy": `script-src 'self'`,
             "X-Frame-Options": "DENY",
         })
-        .json(userInfo);
+        .json(allUsers);
     }
     catch (e) {
         console.log({error: e})
