@@ -31,7 +31,7 @@ const registerUser = async (req, res, next)=> {
         // });
 
         // if (!userID) {
-        //     return next({status: 400, message: "Invalid user details"});
+        //     return next({status: 400, message: "Invalid user"});
         // }
 
         // const userDetail = await User_detail.createUserDetails({
