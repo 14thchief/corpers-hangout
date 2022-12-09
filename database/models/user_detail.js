@@ -45,6 +45,6 @@ module.exports = (sequelize, DataTypes) => {
     return userDetails.userID;
   }
 
-  User_detail.sync({force: true});
+  User_detail.sync();
   return User_detail;
 };
