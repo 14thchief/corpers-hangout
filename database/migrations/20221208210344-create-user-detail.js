@@ -19,6 +19,9 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true,
       },
+      gender: {
+        type: Sequelize.STRING
+      },
       startDate: {
         type: Sequelize.STRING,
       },

@@ -30,6 +30,9 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true,
       },
+      singleToken: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -39,6 +42,7 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Users');

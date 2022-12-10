@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
     },
     password: DataTypes.STRING,
+    singleToken: DataTypes.STRING,
   });
 
   User.associate = (models)=> {
@@ -57,6 +58,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
-  // User.sync();
+  User.sync();
   return User;
 };

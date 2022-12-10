@@ -1,20 +1,19 @@
 var express = require('express');
+const passport = require('passport');
 var router = express.Router();
 
 /**Import Controllers */
 const {
-  registerUser,
-  getUserInfo,
+  getUserProfile,
+  getAllUsers,
 
-} = require('../controllers/usersControllers');
+} = require('../controllers/userControllers');
+const { validateUser } = require('../controllers/auth');
+
+router.use(validateUser);
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-router.get('/:username', getUserInfo);
-
-router.post('/register', registerUser);
+router.get('/:id', getUserProfile);
+router.get('/all', getAllUsers);
 
 module.exports = router;
