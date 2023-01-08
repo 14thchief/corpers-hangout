@@ -56,6 +56,7 @@ const registerUser = async (req, res, next)=> {
           email,
           username,
           password,
+          gender,
           phone,
           startDate,
           school,
@@ -97,6 +98,7 @@ const registerUser = async (req, res, next)=> {
       // create/append user details
       const userDetail = await User_detail.createUserDetails({
           userID,
+          gender,
           phone,
           startDate,
           school,
@@ -125,6 +127,7 @@ const registerUser = async (req, res, next)=> {
           lastName,
           email,
           username,
+          gender,
           phone,
           startDate,
           school,

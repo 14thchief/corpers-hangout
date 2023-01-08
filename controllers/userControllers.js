@@ -4,7 +4,10 @@ const { User, User_detail } =  require('../database/models/index');
 const getUserProfile = async (req, res, next) => {
     try {
         const user = await User.findOne({
-            where: { id: req.params.id }
+            where: { id: req.params.id },
+            attributes: {
+                exclude: ['password', 'singleToken'],
+            },
         })
         if (!user) {
             return next({status: 404, msg: 'User not found'});
